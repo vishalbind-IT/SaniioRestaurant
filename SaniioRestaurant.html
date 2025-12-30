@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Saniio | The Restaurant</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #C5A47E; /* Saniio Gold */
+            --dark-color: #1B1B1B;
+            --text-color: #666;
+            --light-bg: #F9F9F9;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+            --navbar-height: 76px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--navbar-height);
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-color);
+            line-height: 1.7;
+            overflow-x: hidden;
+            background-color: #fff;
+            position: relative;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            color: var(--dark-color);
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--dark-color);
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- Utilities --- */
+        .text-gold { color: var(--primary-color) !important; }
+        .bg-dark-custom { background-color: var(--dark-color) !important; }
+        .bg-light-custom { background-color: var(--light-bg) !important; }
+        .ls-2 { letter-spacing: 2px; }
+        
+        .btn-Saniio {
+            background-color: transparent;
+            border: 2px solid var(--dark-color);
+            color: var(--dark-color);
+            padding: 10px 24px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 13px;
+            border-radius: 0;
+            transition: all 0.4s;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+        }
+
+        .btn-Saniio:hover {
+            background-color: var(--dark-color);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .btn-Saniio-primary {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-Saniio-primary:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: #fff;
+        }
+
+        /* Standard Section Styling */
+        section {
+            scroll-margin-top: var(--navbar-height);
+            position: relative;
+        }
+
+        .section-padding { padding: 80px 0; }
+        .section-title { text-align: center; margin-bottom: 3rem; }
+        .section-title h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .section-title span { 
+            font-family: var(--font-body);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--primary-color);
+            font-size: 14px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* --- Responsive Tweaks --- */
+        @media (max-width: 768px) {
+            .section-padding { padding: 50px 0; }
+            .section-title h2 { font-size: 2rem; }
+            .hero-content h1 { font-size: 2.5rem !important; }
+            .display-5 { font-size: 2rem; }
+        }
+
+        /* --- Header & Nav --- */
+        .top-bar {
+            background-color: #f5f5f5;
+            font-size: 13px;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .navbar {
+            background-color: #fff;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: padding 0.3s;
+        }
+
+        .navbar-brand {
+            font-family: var(--font-heading);
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .nav-link {
+            font-size: 13px;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--dark-color) !important;
+            margin: 0 12px;
+            position: relative;
+            padding: 8px 0;
+            cursor: pointer;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            min-height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            padding: 60px 20px;
+            margin-top: -76px; /* Pull behind navbar */
+            padding-top: 136px; /* Compensate for navbar */
+        }
+
+        /* IOS Fix for fixed background */
+        @supports (-webkit-touch-callout: none) {
+            .hero-section, .reservation-bg {
+                background-attachment: scroll !important;
+            }
+        }
+
+        .hero-content h1 {
+            color: #fff;
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 30px;
+            color: rgba(255,255,255,0.95);
+        }
+
+        /* --- Menu Grid --- */
+        .menu-filter-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 3rem;
+        }
+
+        .menu-filter-btn {
+            background: none;
+            border: none;
+            text-transform: uppercase;
+            font-weight: 700;
+            padding: 8px 16px;
+            color: #999;
+            transition: all 0.3s;
+            border-bottom: 2px solid transparent;
+            font-size: 0.9rem;
+        }
+        .menu-filter-btn.active, .menu-filter-btn:hover {
+            color: var(--dark-color);
+            border-color: var(--primary-color);
+        }
+
+        .menu-item {
+            margin-bottom: 40px;
+            background: #fff;
+            transition: transform 0.3s ease;
+        }
+        
+        .menu-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 1px dotted #ccc;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+        }
+        .menu-item-title {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            color: var(--dark-color);
+            background-color: #fff;
+            padding-right: 10px;
+            margin: 0;
+        }
+        .menu-item-price {
+            font-weight: 700;
+            color: var(--primary-color);
+            background-color: #fff;
+            padding-left: 10px;
+            font-size: 1.1rem;
+        }
+        .menu-item-desc {
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        /* --- Gallery --- */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .gallery-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(197, 164, 126, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .gallery-overlay i {
+            color: #fff;
+            font-size: 2rem;
+            transform: translateY(20px);
+            transition: transform 0.3s;
+        }
+        .gallery-item:hover img, .gallery-item:active img { transform: scale(1.1); }
+        .gallery-item:hover .gallery-overlay, .gallery-item:active .gallery-overlay { opacity: 1; }
+        .gallery-item:hover .gallery-overlay i, .gallery-item:active .gallery-overlay i { transform: translateY(0); }
+
+        /* --- Testimonials --- */
+        .testimonial-card {
+            background: #fff;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            margin: 20px 10px;
+            border-radius: 8px;
+        }
+        .testimonial-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+        }
+        .quote-icon {
+            color: var(--primary-color);
+            font-size: 24px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        /* --- Forms --- */
+        .form-control, .form-select {
+            border-radius: 0;
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            font-size: 14px;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(197, 164, 126, 0.25);
+        }
+
+        /* --- Toast Notification --- */
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+        .custom-toast {
+            background: #fff;
+            border-left: 4px solid var(--primary-color);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            min-width: 300px;
+            overflow: hidden;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #111;
+            color: #aaa;
+            padding: 70px 0 30px;
+            font-size: 14px;
+        }
+        footer h4 {
+            color: #fff;
+            font-size: 18px;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+        footer ul li { margin-bottom: 12px; }
+        footer a { color: #aaa; text-decoration: none; }
+        footer a:hover { color: var(--primary-color); }
+        .social-icons a {
+            display: inline-flex;
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #333;
+            border-radius: 50%;
+            margin-right: 8px;
+            color: #fff;
+            transition: 0.3s;
+        }
+        .social-icons a:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        .copyright {
+            border-top: 1px solid #222;
+            padding-top: 30px;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        /* Scroll Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Back to top button */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 45px;
+            height: 45px;
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+        #backToTop:hover {
+            background-color: var(--dark-color);
+            transform: translateY(-3px);
+        }
+
+    </style>
+</head>
+<body id="home" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="80">
+
+    <!-- Notification Toast Container -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast custom-toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header border-0">
+                <strong class="me-auto text-dark" id="toastTitle">Notification</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body" id="toastMessage">
+                Action successful!
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top -->
+    <button id="backToTop" onclick="scrollToTop()">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Top Bar -->
+    <div class="top-bar d-none d-lg-block">
+        <div class="container d-flex justify-content-between">
+            <div class="top-contacts">
+                <span class="me-4"><i class="fas fa-phone-alt me-2 text-gold"></i> +1 (123) 456-7890</span>
+                <span><i class="fas fa-envelope me-2 text-gold"></i> info@Saniiorestaurant.com</span>
+            </div>
+            <div class="top-socials">
+                <a href="#" class="me-3"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="me-3"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#home">Saniio</a>
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto py-3 py-lg-0">
+                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#specials">Specials</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#menu">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#reservation">Reservation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- === HERO SECTION === -->
+    <section class="hero-section">
+        <div class="container hero-content text-center reveal">
+            <span class="d-block text-uppercase ls-2 mb-2 text-gold fw-bold">Welcome to Saniio</span>
+            <h1 class="display-3 fw-bold">The Best Experience</h1>
+            <p>We serve only the freshest ingredients with a modern twist.</p>
+            <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
+                <a href="#menu" class="btn btn-Saniio btn-Saniio-primary bg-white border-0">Explore Menu</a>
+                <a href="#reservation" class="btn btn-Saniio bg-transparent text-white border-white">Book a Table</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- === ABOUT SECTION === -->
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6 mb-4 mb-lg-0 reveal">
+                     <div class="section-title text-start mb-4">
+                        <span>Our History</span>
+                        <h2>A Tradition of Taste</h2>
+                    </div>
+                    <p class="text-secondary mb-4">Established in 2010, Saniio started as a small family bistro. Over the years, our passion for culinary excellence has transformed us into one of the city's premier dining destinations. We believe in the power of food to bring people together.</p>
+                    <p class="text-secondary">Our Head Chef, Marco Rossi, brings 20 years of international experience to the kitchen, fusing traditional techniques with modern flair. Every dish tells a story of heritage, flavor, and innovation.</p>
+                </div>
+                <div class="col-lg-6 reveal">
+                    <div class="about-img-box">
+                        <img src="https://images.unsplash.com/photo-1577106263724-2c8e03bfe9f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Chef" class="img-fluid rounded shadow w-100">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5 text-center g-4 reveal">
+                 <div class="col-md-4">
+                     <div class="p-4 border rounded h-100 hover-lift bg-white">
+                        <i class="fas fa-seedling fa-3x text-gold mb-3"></i>
+                        <h4>Fresh Ingredients</h4>
+                        <p class="text-muted mb-0">We source 80% of our produce from local farmers within 50 miles.</p>
+                     </div>
+                 </div>
+                 <div class="col-md-4">
+                     <div class="p-4 border rounded h-100 hover-lift bg-white">
+                        <i class="fas fa-wine-glass-alt fa-3x text-gold mb-3"></i>
+                        <h4>Curated Wines</h4>
+                        <p class="text-muted mb-0">An award-winning selection of vintage wines to pair with your meal.</p>
+                     </div>
+                 </div>
+                 <div class="col-md-4">
+                     <div class="p-4 border rounded h-100 hover-lift bg-white">
+                        <i class="fas fa-award fa-3x text-gold mb-3"></i>
+                        <h4>Award Winning</h4>
+                        <p class="text-muted mb-0">Voted "Best Atmosphere" in the City Dining Awards 2023.</p>
+                     </div>
+                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === SPECIALS SECTION === -->
+    <section id="specials" class="section-padding bg-light-custom">
+        <div class="container">
+            <div class="text-center mb-5 section-title reveal">
+                <span>Tasty & Crunchy</span>
+                <h2>Chef's Special</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4 reveal">
+                    <div class="card border-0 h-100 bg-transparent">
+                        <div class="overflow-hidden rounded mb-3">
+                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="card-img-top w-100" alt="Dish 1" style="height: 250px; object-fit: cover; transition: transform 0.5s;">
+                        </div>
+                        <div class="card-body text-center p-0">
+                            <h4 class="card-title h5">Grilled Salmon</h4>
+                            <p class="card-text text-muted">Asparagus, lemon butter sauce, fresh herbs.</p>
+                            <h5 class="text-gold">$24.00</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 reveal">
+                    <div class="card border-0 h-100 bg-transparent">
+                        <div class="overflow-hidden rounded mb-3">
+                            <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="card-img-top w-100" alt="Dish 2" style="height: 250px; object-fit: cover; transition: transform 0.5s;">
+                        </div>
+                        <div class="card-body text-center p-0">
+                            <h4 class="card-title h5">Premium Steak</h4>
+                            <p class="card-text text-muted">Ribeye, garlic mashed potatoes, seasonal veg.</p>
+                            <h5 class="text-gold">$32.00</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 reveal">
+                    <div class="card border-0 h-100 bg-transparent">
+                        <div class="overflow-hidden rounded mb-3">
+                            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="card-img-top w-100" alt="Dish 3" style="height: 250px; object-fit: cover; transition: transform 0.5s;">
+                        </div>
+                        <div class="card-body text-center p-0">
+                            <h4 class="card-title h5">Truffle Pasta</h4>
+                            <p class="card-text text-muted">Fresh tagliatelle, black truffle, parmesan.</p>
+                            <h5 class="text-gold">$28.00</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === MENU SECTION === -->
+    <section id="menu" class="section-padding">
+        <div class="container">
+            <div class="text-center mb-5 section-title reveal">
+                <span>Discover</span>
+                <h2>Our Menu</h2>
+            </div>
+            
+            <div class="text-center menu-filter-container reveal">
+                <button class="menu-filter-btn active" onclick="filterMenu('all', this)">All</button>
+                <button class="menu-filter-btn" onclick="filterMenu('starter', this)">Starters</button>
+                <button class="menu-filter-btn" onclick="filterMenu('main', this)">Mains</button>
+                <button class="menu-filter-btn" onclick="filterMenu('dessert', this)">Desserts</button>
+                <button class="menu-filter-btn" onclick="filterMenu('drinks', this)">Drinks</button>
+            </div>
+
+            <div class="row g-4" id="menu-container">
+                <!-- Starters -->
+                <div class="col-lg-6 menu-item-col starter reveal">
+                    <div class="menu-item p-3 border rounded-1">
+                        <div class="menu-item-header">
+                            <h4 class="menu-item-title">Bruschetta</h4>
+                            <span class="menu-item-price">$12.00</span>
+                        </div>
+                        <p class="menu-item-desc mb-0">Grilled bread rubbed with garlic and topped with olive oil and salt.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 menu-item-col starter reveal">
+                    <div class="menu-item p-3 border rounded-1">
+                        <div class="menu-item-header">
+                            <h4 class="menu-item-title">Fried Calamari</h4>
+                            <span class="menu-item-price">$16.00</span>
+                        </div>
+                        <p class="menu-item-desc mb-0">Squid lightly battered and fried, served with marinara sauce.</p>
+                    </div>
+                </div>
+
+                <!-- Mains -->
+                <div class="col-lg-6 menu-item-col main reveal">
+                    <div class="menu-item p-3 border rounded-1">
+                        <div class="menu-item-header">
+                            <h4 class="menu-item-title">Grilled Salmon</h4>
+                            <span class="menu-item-price">$28.00</span>
+                        </div>
+                        <p class="menu-item-desc mb-0">Fresh salmon fillet grilled to perfection, served with seasonal vegetables.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 menu-item-col main reveal">
+                    <div class="menu-item p-3 border rounded-1">
+                        <div class="menu-item-header">
+                            <h4 class="menu-item-title">Filet Mignon</h4>
+                            <span class="menu-item-price">$38.00</span>
+                        </div>
+                        <p class="menu-item-desc mb-0">8oz tenderloin steak, garlic mashed potatoes, red wine reduction.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 menu-item-col main reveal">
+                    <div class="menu-item p-3 border rounded-1">
+                        <div class="menu-item-header">
+                            <h4 class="menu-item-title">Chicken Parmesan</h4>
+                            <span class="menu-item-price">$24.00</span>
+                        </div>
+                        <p class="menu-item-desc mb-0">Breaded chicken breast topped with marinara sauce and melted mozzarella.</p>
+                    </div>
+                </div>
+
+                <!-- Desserts -->
+                <div class="col-lg-6 menu-item-col dessert reveal">
+                    <div class="menu-item p-3 border rounded-1">
+                        <div class="menu-item-header">
+                            <h4 class="menu-item-title">Tiramisu</h4>
+                            <span class="menu-item-price">$10.00</span>
+                        </div>
+                        <p class="menu-item-desc mb-0">Classic Italian dessert with layers of coffee-soaked ladyfingers and mascarpone.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 menu-item-col dessert reveal">
+                    <div class="menu-item p-3 border rounded-1">
+                        <div class="menu-item-header">
+                            <h4 class="menu-item-title">Chocolate Lava Cake</h4>
+                            <span class="menu-item-price">$12.00</span>
+                        </div>
+                        <p class="menu-item-desc mb-0">Warm chocolate cake with a liquid chocolate center, served with vanilla ice cream.</p>
+                    </div>
+                </div>
+
+                <!-- Drinks -->
+                <div class="col-lg-6 menu-item-col drinks reveal">
+                    <div class="menu-item p-3 border rounded-1">
+                        <div class="menu-item-header">
+                            <h4 class="menu-item-title">House Wine (Red/White)</h4>
+                            <span class="menu-item-price">$9.00</span>
+                        </div>
+                        <p class="menu-item-desc mb-0">Glass of our house selection.</p>
+                    </div>
+                </div>
+                 <div class="col-lg-6 menu-item-col drinks reveal">
+                    <div class="menu-item p-3 border rounded-1">
+                        <div class="menu-item-header">
+                            <h4 class="menu-item-title">Craft Beer</h4>
+                            <span class="menu-item-price">$8.00</span>
+                        </div>
+                        <p class="menu-item-desc mb-0">Selection of local IPA and Lagers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === GALLERY SECTION === -->
+    <section id="gallery" class="section-padding bg-light-custom">
+        <div class="container">
+            <div class="text-center mb-5 section-title reveal">
+                <span>Visuals</span>
+                <h2>Our Gallery</h2>
+            </div>
+            <div class="row g-3">
+                <div class="col-md-4 col-sm-6 reveal">
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Food 1">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 reveal">
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="https://images.unsplash.com/photo-1550966871-3ed3c47e2ce2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Interior 1">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 reveal">
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Food 2">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 reveal">
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="https://images.unsplash.com/photo-1592861956120-e524fc739696?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Food 3">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 reveal">
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Interior 2">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 reveal">
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Food 4">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === TESTIMONIALS SECTION === -->
+    <section id="testimonials" class="section-padding">
+        <div class="container">
+            <div class="text-center mb-5 section-title reveal">
+                <span>Testimonials</span>
+                <h2>What Clients Say</h2>
+            </div>
+            
+            <div id="testimonialCarousel" class="carousel slide reveal" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="testimonial-card">
+                                    <i class="fas fa-quote-left quote-icon"></i>
+                                    <p class="fst-italic mb-4 fs-5">"Absolutely the best dining experience in town. The atmosphere was perfect, and the food was divine. Highly recommended!"</p>
+                                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" class="testimonial-img">
+                                    <h5 class="mb-0">Sarah Johnson</h5>
+                                    <small class="text-muted">Food Critic</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="testimonial-card">
+                                    <i class="fas fa-quote-left quote-icon"></i>
+                                    <p class="fst-italic mb-4 fs-5">"A hidden gem! The service was impeccable and the Chef's Special was out of this world. We will be back."</p>
+                                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="testimonial-img">
+                                    <h5 class="mb-0">Michael Chen</h5>
+                                    <small class="text-muted">Regular Guest</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon bg-dark rounded-circle p-3" aria-hidden="true" style="background-color: var(--dark-color) !important;"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon bg-dark rounded-circle p-3" aria-hidden="true" style="background-color: var(--dark-color) !important;"></span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- === RESERVATION SECTION === -->
+    <section id="reservation" class="section-padding bg-light-custom" style="position: relative;">
+        <!-- Background Overlay -->
+        <div style="background: url('https://images.unsplash.com/photo-1550966871-3ed3c47e2ce2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover fixed; position: absolute; top:0; left:0; width:100%; height:400px; opacity: 0.1;"></div>
+        
+        <div class="container position-relative">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="text-center mb-5 section-title reveal">
+                        <span>Book Your Table</span>
+                        <h2>Reservation Form</h2>
+                        <p class="text-secondary">We accept reservations for lunch and dinner. For parties of 10 or more, please contact us directly.</p>
+                    </div>
+                    
+                    <form onsubmit="handleFormSubmit(event, 'Reservation Request Sent!', 'We will confirm your table shortly.')" class="p-4 p-md-5 bg-white shadow-sm border rounded reveal">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Name</label>
+                                <input type="text" class="form-control" placeholder="Your Name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Email</label>
+                                <input type="email" class="form-control" placeholder="Your Email" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Phone</label>
+                                <input type="tel" class="form-control" placeholder="Phone Number" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Guests</label>
+                                <select class="form-select">
+                                    <option>2 People</option>
+                                    <option>3 People</option>
+                                    <option>4 People</option>
+                                    <option>5 People</option>
+                                    <option>6+ People</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Date</label>
+                                <input type="date" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Time</label>
+                                <select class="form-select">
+                                    <option>Lunch (12:00 - 15:00)</option>
+                                    <option>Dinner (18:00 - 22:00)</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label small fw-bold">Special Requests</label>
+                                <textarea class="form-control" rows="3" placeholder="Allergies, special occasions, etc."></textarea>
+                            </div>
+                            <div class="col-12 text-center mt-4">
+                                <button type="submit" class="btn btn-Saniio btn-Saniio-primary px-5">Reserve Table</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === CONTACT SECTION === -->
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6 reveal">
+                    <div class="section-title text-start mb-4">
+                        <span>Get in Touch</span>
+                        <h2>Visit Us Today</h2>
+                    </div>
+                    <p class="mb-4 text-secondary">We are located in the heart of the city. Parking is available on the street or in the adjacent public garage.</p>
+                    
+                    <div class="d-flex mb-4">
+                        <div class="me-3"><i class="fas fa-map-marker-alt text-gold fa-2x"></i></div>
+                        <div>
+                            <h5 class="mb-1">Address</h5>
+                            <p class="text-muted mb-0">123 Culinary Avenue, Food District, NY 10001</p>
+                        </div>
+                    </div>
+                    <div class="d-flex mb-4">
+                        <div class="me-3"><i class="fas fa-phone-alt text-gold fa-2x"></i></div>
+                        <div>
+                            <h5 class="mb-1">Phone</h5>
+                            <p class="text-muted mb-0">+1 (123) 456-7890</p>
+                        </div>
+                    </div>
+                    <div class="d-flex mb-4">
+                        <div class="me-3"><i class="fas fa-envelope text-gold fa-2x"></i></div>
+                        <div>
+                            <h5 class="mb-1">Email</h5>
+                            <p class="text-muted mb-0">info@Saniiorestaurant.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 reveal">
+                    <form onsubmit="handleFormSubmit(event, 'Message Sent!', 'Thank you for contacting us.')" class="bg-light-custom p-4 p-md-5 border h-100">
+                        <h4 class="mb-4">Send a Message</h4>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Subject">
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" rows="4" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-Saniio w-100">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Map Placeholder (Simulated) -->
+    <div style="width: 100%; height: 400px; background-color: #e9ecef; display: flex; align-items: center; justify-content: center; color: #666; font-size: 1.5rem; border-top: 1px solid #ddd;">
+        <i class="fas fa-map-marked-alt me-3 text-gold"></i> Google Map Embed Placeholder
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                    <h4 class="text-white">Saniio</h4>
+                    <p>A fine dining experience offering the best local and international cuisine in an elegant atmosphere.</p>
+                    <div class="social-icons mt-3">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                    <h4>Contact Info</h4>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-map-marker-alt text-gold me-2"></i> 123 Culinary Ave, NY</li>
+                        <li><i class="fas fa-phone text-gold me-2"></i> +1 (123) 456-7890</li>
+                        <li><i class="fas fa-envelope text-gold me-2"></i> info@Saniiorestaurant.com</li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h4>Opening Hours</h4>
+                    <ul class="list-unstyled">
+                        <li class="d-flex justify-content-between border-bottom border-secondary pb-2 mb-2"><span>Mon - Thu:</span> <span>11:00 AM - 10:00 PM</span></li>
+                        <li class="d-flex justify-content-between border-bottom border-secondary pb-2 mb-2"><span>Fri - Sat:</span> <span>11:00 AM - 11:00 PM</span></li>
+                        <li class="d-flex justify-content-between"><span>Sunday:</span> <span>10:00 AM - 9:00 PM</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Saniio Restaurant. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content bg-transparent border-0 shadow-none">
+                <div class="modal-body p-0 position-relative text-center">
+                    <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3 z-3" data-bs-dismiss="modal" aria-label="Close" style="filter: invert(1); opacity: 1;"></button>
+                    <img src="" id="lightboxImage" class="img-fluid rounded shadow-lg" style="max-height: 90vh;" alt="Full View">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // === Menu Filter ===
+        function filterMenu(category, btn) {
+            // Update button styles
+            document.querySelectorAll('.menu-filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // Filter items
+            document.querySelectorAll('.menu-item-col').forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                    // Trigger reflow to restart animation
+                    item.style.animation = 'none';
+                    item.offsetHeight; /* trigger reflow */
+                    item.style.animation = 'fadeIn 0.5s';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // === Lightbox ===
+        function openLightbox(element) {
+            const imgSrc = element.querySelector('img').src;
+            document.getElementById('lightboxImage').src = imgSrc;
+            const myModal = new bootstrap.Modal(document.getElementById('lightboxModal'));
+            myModal.show();
+        }
+
+        // === Form Handling & Toasts ===
+        function handleFormSubmit(e, title, msg) {
+            e.preventDefault();
+            
+            // Show Toast
+            const toastEl = document.getElementById('liveToast');
+            document.getElementById('toastTitle').innerText = title;
+            document.getElementById('toastMessage').innerText = msg;
+            
+            const toast = new bootstrap.Toast(toastEl);
+            toast.show();
+
+            e.target.reset();
+        }
+
+        // === Back to Top & Scroll Spy ===
+        const backToTopBtn = document.getElementById("backToTop");
+        
+        window.onscroll = function() {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                backToTopBtn.style.display = "flex";
+            } else {
+                backToTopBtn.style.display = "none";
+            }
+            
+            // Active Link Highlighting (Manual Fallback if Bootstrap Spy behaves oddly)
+            const sections = document.querySelectorAll('section');
+            const navLi = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLi.forEach((li) => {
+                li.classList.remove('active');
+                if (li.getAttribute('href').includes(current)) {
+                    li.classList.add('active');
+                }
+            });
+        };
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // === Mobile Menu Auto-Close ===
+        const navLinks = document.querySelectorAll('.nav-link');
+        const menuToggle = document.getElementById('mainNav');
+        const bsCollapse = new bootstrap.Collapse(menuToggle, {toggle: false});
+        
+        navLinks.forEach((l) => {
+            l.addEventListener('click', () => {
+                if (menuToggle.classList.contains('show')) {
+                    bsCollapse.hide();
+                }
+            });
+        });
+
+        // === Scroll Animations (Intersection Observer) ===
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        });
+
+    </script>
+</body>
+</html>
